@@ -1,0 +1,43 @@
+﻿<Window x:Class="Order.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Order"
+        mc:Ignorable="d"
+        Title="Prepare Order" Height="376.836" Width="530">
+    <Grid>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="432,293,0,0" VerticalAlignment="Top" Width="75" Click="EventHandler_closeButtonClick"/>
+        <Button Content="Get Orders" HorizontalAlignment="Left" Margin="352,293,0,0" VerticalAlignment="Top" Width="75" Click="EventHandler_getOrderButtonclick"/>
+        <ComboBox HorizontalAlignment="Left" Margin="187,40,0,0" VerticalAlignment="Top" Width="240" Name="ComboBoxProducts"/>
+        <DataGrid HorizontalAlignment="Left" Height="222" Margin="10,66,0,0" VerticalAlignment="Top" Width="497" AutoGenerateColumns="False" Name="DataGridOrder" Background="WhiteSmoke" CellEditEnding="EventHandler_DataGridCellEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="QTY" Binding="{Binding Quantity,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Unit Price" Binding="{Binding Price}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Total" Binding="{Binding Total}" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="-" Width="20" Click="EventHandler_deleteButtonClick"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="73,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53" Name="TextBoxQuantity" KeyUp="EventHandler_keyUp"/>
+        <Label Content="Amount:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Content="Product:" HorizontalAlignment="Left" Margin="131,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.401,2.882"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="432,40,0,0" VerticalAlignment="Top" Width="75" Click="EventHandler_addButtonClick"/>
+        <Label Content="Budget per order:" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.947,-0.288"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="120,8,0,0" TextWrapping="Wrap" Text="10000" VerticalAlignment="Top" Width="74" Name="TextBoxBudgetPerOrder" RenderTransformOrigin="1.074,0.318"/>
+        <Label Content="Remaining:" HorizontalAlignment="Left" Margin="227,8,0,0" VerticalAlignment="Top"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="307,8,0,0" VerticalAlignment="Top" Width="80" Name="LabelBudgetRemaining"/>
+        <StatusBar HorizontalAlignment="Left" Height="26" Margin="10,318,0,0" VerticalAlignment="Top" Width="497" Name="StatusBar" Background="White">
+            <StatusBarItem>
+                <TextBlock Name="TextBlockStatusBarMessage"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
